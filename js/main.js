@@ -77,10 +77,7 @@ form.onsubmit = async function(event) {
             });
 
             const data = await response.json()
-            console.log(data)
-
-            form.reset();
-            alert('Регистрация успешно завершена.');
+            location.reload();
         } catch {
             alert('Сервер не отвечает, попробуйте позже.');
         }
