@@ -43,6 +43,7 @@ form.onsubmit = async function(event) {
         login: userLogin.value,
         password: userpass2.value
     };
+    // Если есть ошибки, то данные не отправляем
     if (validatePassword(userpass) && validateName(username) && validateLogin(userLogin) && validateEmail(useremail) && validateSecondPassword(userpass, userpass2)) {
         try {
             let response = await fetch(SERVER_PATH + 'regist.php', {

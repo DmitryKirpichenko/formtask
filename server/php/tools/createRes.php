@@ -1,7 +1,8 @@
 <?php 
 
-    function createRes($status, $message){
-        return json_encode(array('status' => $status, 'message' => $message));
+    // функция для создания ответа сервера
+    function createRes($status, $message, $string_type = ''){
+        return json_encode(array('status' => $status, 'message' => $message, 'string_type' => $string_type));
     }
 
 ?>

@@ -2,6 +2,7 @@
 
 require_once '../models/user.php';
 
+// класс репозиторий для пользователя
 class UserRepository {
     private $path = '/../data/users.json';
 

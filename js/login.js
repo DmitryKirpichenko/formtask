@@ -24,6 +24,7 @@ form.onsubmit = async function(event) {
         password: userpass.value
     };
 
+    // Если есть ошибки, то данные не отправляем
     if (validatePassword(userpass) && validateLogin(userLogin)) {
         try {
             let response = await fetch(SERVER_PATH + 'login.php', {
@@ -33,7 +34,16 @@ form.onsubmit = async function(event) {
             });
 
             const data = await response.json()
-            location.reload();
+            console.log(data)
+            helptextpassword.innerHTML = ''
+            helptextlogin.innerHTML = ''
+                // Проверяем ответ от сервера, если ошибка то выводим её в нужном поле
+            if (data.status)
+                location.reload();
+            else {
+                if (data.string_type == 'password') { helptextpassword.innerHTML = data.message; }
+                if (data.string_type == 'login') { helptextlogin.innerHTML = data.message; }
+            }
         } catch {
             alert('Сервер не отвечает, попробуйте позже.');
         }

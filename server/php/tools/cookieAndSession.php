@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/../../Repositories/userRepository.php';
 
+// Функция для создания кук и сессии
 function createCookieAndSession($login, $password, $name)
 {
    // session_start();
@@ -18,10 +19,12 @@ function createCookieAndSession($login, $password, $name)
     setcookie('name', $name, time() + 30000);
 }
 
+// Фунция для проверки есть ли куки или сессия
 function checkCookieAndSession()
 {
     //session_start();
     if (isset($_SESSION['auth']) && empty($_SESSION['auth']) && $_SESSION['auth'] == false) {
+        // если сессии нет, но есть куки то создаём сессию
         if (!empty($_COOKIE['login']) && !empty($_COOKIE['key']) && !empty($_COOKIE['name'])) {
 
             $login = $_COOKIE['login'];

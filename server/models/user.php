@@ -1,5 +1,6 @@
 <?php
 
+// Класс описывающий пользователя
 class User
 {
     // свойства пользователя
@@ -48,6 +49,7 @@ class User
         return $this->name;
     }
 
+    // Функция возращающяя все данные о пользователе в виде массива
     public function getFullInfo()
     {
         return [

@@ -1,12 +1,8 @@
-export function validateName(elem) {
-    if (elem.value.length < 2) {
-        return false;
-    } else {
-
-        return true;
-    }
-}
-
+/* Функция конструктор, для подписания обьекта {elem} события убратия курсора,
+    если функция проверки {compFunc} вернула false, то выводим текст {text} в
+    элемент {helpElem} и окрашиваем {elem} и {helpElem} в красный,
+    если функция проверки {compFunc} вернула true, то делаем цвет чёрным и
+    убераем вспомогательный текст*/
 function blurElem(elem, helpElem, text, compFunc) {
     elem.onblur = function() {
         console.log('red')
@@ -22,10 +18,22 @@ function blurElem(elem, helpElem, text, compFunc) {
     }
 }
 
+// Функция для проверки имени (длина больше 2 символов)
+export function validateName(elem) {
+    if (elem.value.length < 2) {
+        return false;
+    } else {
+
+        return true;
+    }
+}
+
+
 export function blurName(elem, helpElem) {
     blurElem(elem, helpElem, 'Минимум 2 символа', validateName)
 }
 
+// Функция для проверки логина (длина больше 6 символов)
 export function validateLogin(elem) {
     if (elem.value.length < 6) {
         return false;
@@ -38,6 +46,7 @@ export function blurLogin(elem, helpElem) {
     blurElem(elem, helpElem, 'Минимум 6 символов', validateLogin)
 }
 
+// Функция для проверки e-mail 
 export function validateEmail(elem) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -49,6 +58,7 @@ export function blurEmail(elem, helpElem) {
 
 }
 
+// Функция для проверки пароля (Должен состоять из 6 символов, 1 заглавный, 1 низкого регистра, 1 цифра и 1 спец символ)
 export function validatePassword(elem) {
     const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
 
@@ -59,6 +69,8 @@ export function blurPassword(elem, helpElem) {
     blurElem(elem, helpElem, 'Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ', validatePassword)
 
 }
+
+// Функция для проверки второго пароля (пароли толжны совпадать)
 export function validateSecondPassword(elem, secondElem) {
     if (elem.value !== secondElem.value) {
         return false

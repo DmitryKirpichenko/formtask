@@ -1,5 +1,6 @@
 <?php 
 
+// класс для работы с хэш
 class Hash{
     private $static_salt = 'saf9808-safasf8868576safs687as6das6588sdas75';
 

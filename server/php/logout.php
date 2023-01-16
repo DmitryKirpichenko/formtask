@@ -1,5 +1,7 @@
 <?php
 
+// принимает запрос на выход из системы
+
 header('Content-type: json/application');
 
 require_once './tools/createRes.php';

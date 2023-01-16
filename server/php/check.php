@@ -1,4 +1,5 @@
 <?php
+// принимает запросы для проверки кук и сессии
 
 header('Content-type: json/application');
 
