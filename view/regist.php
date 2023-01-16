@@ -8,6 +8,7 @@
     <title>Registet</title>
     <link rel="stylesheet" href="../css/styled.css" type="text/css" />
     <script src="../js/check.js"> </script>
+    <noscript></noscript>
 </head>
 
 <body>

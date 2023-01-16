@@ -8,6 +8,9 @@ require_once './tools/createRes.php';
 require_once './tools/cookieAndSession.php';
 require_once './tools/hash.php';
 
+if ($_SERVER['HTTP_X_REQUESTED_WITH'] !== "FetchAjaxRequest")
+    die(createRes(false, 'Ожидался ajax-запрос'));
+
 $userRepository = new UserRepository();
 
 session_start();

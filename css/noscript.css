@@ -1,0 +1,5 @@
+/*Прячем кнопку отправки, если отключён javascript*/
+
+.submitBtn {
+    display: none;
+}

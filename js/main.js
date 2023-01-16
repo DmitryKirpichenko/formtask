@@ -13,7 +13,7 @@ import {
 
 import { SERVER_PATH } from "../constants/constants.js";
 
-let username = document.getElementById("unid");
+let username = document.getElementById('unid');
 let helptextname = document.getElementById('helptextname');
 blurName(username, helptextname)
 
@@ -21,19 +21,19 @@ let userLogin = document.getElementById('userlogin');
 let helptextlogin = document.getElementById('helptextlogin')
 blurLogin(userLogin, helptextlogin)
 
-let useremail = document.getElementById("usermailid");
+let useremail = document.getElementById('usermailid');
 let helptextemail = document.getElementById('helptextemail')
 blurEmail(useremail, helptextemail)
 
-let userpass = document.getElementById("pass1id");
+let userpass = document.getElementById('pass1id');
 let helptextpassword = document.getElementById('helptextpassword')
 blurPassword(userpass, helptextpassword)
 
-let userpass2 = document.getElementById("pass2id");
+let userpass2 = document.getElementById('pass2id');
 let helptextsecondpassword = document.getElementById('helptextsecondpassword')
 blurSecondPassword(userpass2, userpass, helptextsecondpassword)
 
-let form = document.getElementById("formid");
+let form = document.getElementById('formid');
 
 form.onsubmit = async function(event) {
     event.preventDefault();
@@ -47,6 +47,7 @@ form.onsubmit = async function(event) {
         try {
             let response = await fetch(SERVER_PATH + 'regist.php', {
                 method: 'POST',
+                headers: { 'X-Requested-With': 'FetchAjaxRequest' },
                 body: JSON.stringify(userdata)
             });
 

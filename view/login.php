@@ -8,6 +8,9 @@
     <title>LogIn</title>
     <link rel="stylesheet" href="../css/styled.css" type="text/css" />
     <script type="module" src="../js/check.js"></script>
+    <noscript>
+    <link rel="stylesheet" href="../css/noscript.css" type="text/css" />
+    </noscript>
 </head>
 
 <body>
