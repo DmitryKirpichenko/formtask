@@ -1,16 +1,25 @@
+//import { validateName } from "./validate";
+import { SERVER_PATH } from "../constants/constants.js";
+
 let username = document.getElementById("unid");
+let helptextname = document.getElementById('helptextname');
+console.log('main')
+    // username.onblur = function() {
+    //     console.log('red')
+    //     if (!validateName(username)) {
+    //         console.log('red')
+    //         username.style.borderColor = "red";
+    //         helptextname.style.color = "red";
+    //         helptextname.innerHTML = "Минимум 2 символа";
+    //     } else {
+    //         username.style.borderColor = "black";
+    //         helptextname.innerHTML = "";
+    //     }
 
-username.onblur = function() {
-
-    if (username.value.length < 2) {
-        username.style.borderColor = "red";
-    } else {
-        username.style.borderColor = "black";
-    }
-
-}
+// }
 
 let userLogin = document.getElementById('userlogin');
+let helptextlogin = document.getElementById('helptextlogin')
 
 userLogin.onblur = function() {
 
@@ -22,9 +31,12 @@ userLogin.onblur = function() {
 
 }
 
+// let valid = new Validate(username, helptextname, userLogin, helptextlogin);
+
 let useremail = document.getElementById("usermailid");
 
 useremail.onblur = function() {
+    console.log('email')
     if (validateEmail(useremail.value) == false) {
         useremail.style.borderColor = "red";
     } else {
@@ -71,7 +83,7 @@ form.onsubmit = async function(event) {
 
     if (validatePassword(userpass.value) == true && userpass.value == userpass2.value) {
         try {
-            let response = await fetch('http://formtask/regist', {
+            let response = await fetch(SERVER_PATH + 'regist.php', {
                 method: 'POST',
                 body: JSON.stringify(userdata)
             });

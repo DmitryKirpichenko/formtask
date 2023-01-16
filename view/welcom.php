@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcom</title>
     <link rel="stylesheet" href="../css/styled.css" type="text/css" />
-    <script src="../js/check.js"></script>
+    <script type="module" src="../js/check.js"></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     }
     ?>
     <button id="logOutButton">Выйти</button>
-    <script src="../js/logout.js"></script>
+    <script type="module" src="../js/logout.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registet</title>
     <link rel="stylesheet" href="./css/styled.css" type="text/css" />
-    <script src="./js/check.js"> </script>
+    <script type="module" src="./js/check.js"> </script>
 </head>
 
 <body>
@@ -17,9 +17,11 @@
         </div>
         <div>
             <input id="unid" required placeholder="Введите имя" name="username" type="text" minlength="2">
+            <p id="helptextname"></p>
         </div>
         <div>
-            <input id="userlogin" required placeholder="Введите логин" name="login" type="text" minlength="2">
+            <input id="userlogin" required placeholder="Введите логин" name="login" type="text" minlength="6">
+            <p id="helptextlogin"></p>
         </div>
         <div>
             <input id="usermailid" required placeholder="Введите E-mail" name="useremail" type="email">
@@ -40,7 +42,7 @@
         </div>
     </form>
 
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>

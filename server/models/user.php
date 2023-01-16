@@ -3,16 +3,14 @@
 class User
 {
     // свойства пользователя
-    public $id;
     public $name;
     public $login;
     public $password;
     public $email;
 
     // конструктор для создания пользователя
-    public function __construct($id, $name, $login, $password, $email)
+    public function __construct($name, $login, $password, $email)
     {
-        $this->id = $id;
         $this->name = $name;
         $this->login = $login;
         $this->password = $password;
@@ -53,7 +51,6 @@ class User
     public function getFullInfo()
     {
         return [
-            'id' => $this->id,
             'name' => $this->name, 
             'email' => $this->email,
             'login' => $this->login,

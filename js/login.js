@@ -1,3 +1,5 @@
+import { SERVER_PATH } from "../constants/constants.js";
+
 let userLogin = document.getElementById('userlogin');
 
 userLogin.onblur = function() {
@@ -37,13 +39,12 @@ form.onsubmit = async function(event) {
 
     if (validatePassword(userpass.value)) {
         try {
-            let response = await fetch('http://formtask/login', {
+            let response = await fetch(SERVER_PATH + 'login.php', {
                 method: 'POST',
                 body: JSON.stringify(userdata)
             });
 
             const data = await response.json()
-
             location.reload();
         } catch {
             alert('Сервер не отвечает, попробуйте позже.');

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn</title>
     <link rel="stylesheet" href="../css/styled.css" type="text/css" />
-    <script src="../js/check.js"></script>
+    <script type="module" src="../js/check.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <script src="../js/login.js"></script>
+    <script type="module" src="../js/login.js"></script>
 </body>
 
 </html>

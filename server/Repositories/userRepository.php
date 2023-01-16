@@ -1,6 +1,6 @@
 <?php
 
-require_once './models/user.php';
+require_once '../models/user.php';
 
 class UserRepository {
     private $path = '/../data/users.json';
@@ -12,7 +12,7 @@ class UserRepository {
         $users = [];
 
         foreach($jsonArray as $data){
-                $user = new User($data['id'], $data['name'], $data['login'], $data['password'], $data['email']);
+                $user = new User($data['name'], $data['login'], $data['password'], $data['email']);
                 $users[] = $user;
         }
 
