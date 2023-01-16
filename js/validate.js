@@ -1,56 +1,84 @@
-export function validateName(name, helpText) {
-    if (name.value.length < 2) {
+export function validateName(elem) {
+    if (elem.value.length < 2) {
+        return false;
+    } else {
+
+        return true;
+    }
+}
+
+function blurElem(elem, helpElem, text, compFunc) {
+    elem.onblur = function() {
+        console.log('red')
+        if (!compFunc(elem)) {
+            elem.style.borderColor = "red";
+            helpElem.style.color = "red";
+            helpElem.innerHTML = text;
+        } else {
+            elem.style.borderColor = "black";
+            helpElem.innerHTML = "";
+        }
+
+    }
+}
+
+export function blurName(elem, helpElem) {
+    blurElem(elem, helpElem, 'Минимум 2 символа', validateName)
+}
+
+export function validateLogin(elem) {
+    if (elem.value.length < 6) {
         return false;
     } else {
         return true;
     }
 }
 
-// export class Validate {
-//     makeProp(elem, helpElem, status) {
-//             return { elem, helpElem, status }
-//         }
-//         // name = { obj: null, status: true };
-//         // login = { obj: null, status: true };
-//         // password = { obj: null, status: true };
-//         // email = { obj: null, status: true };
+export function blurLogin(elem, helpElem) {
+    blurElem(elem, helpElem, 'Минимум 6 символов', validateLogin)
+}
 
-//     constructor(name, helpName, login, helpLogin) {
-//         console.log(name)
-//         this.name = this.makeProp(name, helpName, true)
-//         this.name.elem.onblur = function() {
+export function validateEmail(elem) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-//             if (name.value.length < 2) {
-//                 console.log('error name')
-//                 name.style.borderColor = "red";
-//                 helpName.style.color = "red";
-//                 helpName.innerHTML = "Минимум 2 символа";
-//                 this.name.status = false;
-//             } else {
-//                 name.style.borderColor = "black";
-//                 helpName.innerHTML = "";
-//                 this.name.status = true;
-//             }
+    return re.test(elem.value)
+}
 
-//         }
-//         this.login = this.makeProp(login, helpLogin, true)
-//         login.onblur = function() {
+export function blurEmail(elem, helpElem) {
+    blurElem(elem, helpElem, 'В поле должен быть email', validateEmail)
 
-//                 if (login.value.length < 6) {
-//                     login.style.borderColor = "red";
-//                     helpLogin.style.color = "red";
-//                     helpLogin.innerHTML = "Минимум 6 символов";
-//                     this.login.status = false;
-//                 } else {
-//                     login.style.borderColor = "black";
-//                     helpLogin.innerHTML = "";
-//                     this.login.status = true;
-//                 }
+}
 
-//             }
-//             // this.password = this.makeProp(password, helpPassword, true)
-//             // this.email = this.makeProp(email, helpEmail, true)
-//     }
+export function validatePassword(elem) {
+    const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
 
+    return re.test(elem.value)
+}
 
-// }
+export function blurPassword(elem, helpElem) {
+    blurElem(elem, helpElem, 'Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ', validatePassword)
+
+}
+export function validateSecondPassword(elem, secondElem) {
+    if (elem.value !== secondElem.value) {
+        return false
+    } else {
+        return true
+    }
+}
+
+export function blurSecondPassword(elem, secondElem, helpElem) {
+    elem.onblur = function() {
+        console.log('SecondPassword')
+        if (!validateSecondPassword(elem, secondElem)) {
+            elem.style.borderColor = "red";
+            helpElem.style.color = "red";
+            helpElem.innerHTML = "Пароли должны совпадать";
+        } else {
+            elem.style.borderColor = "black";
+            helpElem.innerHTML = "";
+        }
+
+    }
+
+}

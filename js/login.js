@@ -1,32 +1,19 @@
 import { SERVER_PATH } from "../constants/constants.js";
 
+import {
+    validateLogin,
+    blurLogin,
+    validatePassword,
+    blurPassword,
+} from "./validate.js";
+
 let userLogin = document.getElementById('userlogin');
-
-userLogin.onblur = function() {
-
-    if (userLogin.value.length < 5) {
-        userLogin.style.borderColor = "red";
-    } else {
-        userLogin.style.borderColor = "black";
-    }
-
-}
+let helptextlogin = document.getElementById('helptextlogin')
+blurLogin(userLogin, helptextlogin)
 
 let userpass = document.getElementById("pass");
-
-userpass.onblur = function() {
-    if (validatePassword(userpass.value) == false) {
-        userpass.style.borderColor = "red";
-        let helptext = document.getElementById("helptextid");
-        helptext.style.color = "red";
-        helptext.innerHTML = "Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ";
-    } else {
-        userpass.style.borderColor = "black";
-        let helptext = document.getElementById("helptextid");
-        helptext.innerHTML = "";
-
-    }
-}
+let helptextpassword = document.getElementById('helptextpassword')
+blurPassword(userpass, helptextpassword)
 
 let form = document.getElementById("formid");
 
@@ -37,7 +24,7 @@ form.onsubmit = async function(event) {
         password: userpass.value
     };
 
-    if (validatePassword(userpass.value)) {
+    if (validatePassword(userpass) && validateLogin(userLogin)) {
         try {
             let response = await fetch(SERVER_PATH + 'login.php', {
                 method: 'POST',
@@ -55,8 +42,3 @@ form.onsubmit = async function(event) {
 
 
 };
-
-function validatePassword(password) {
-    const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
-    return re.test(password);
-}

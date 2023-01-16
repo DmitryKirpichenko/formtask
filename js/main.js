@@ -1,74 +1,37 @@
-//import { validateName } from "./validate";
+import {
+    validateName,
+    blurName,
+    validateEmail,
+    blurEmail,
+    validateLogin,
+    blurLogin,
+    validatePassword,
+    blurPassword,
+    validateSecondPassword,
+    blurSecondPassword
+} from "./validate.js";
+
 import { SERVER_PATH } from "../constants/constants.js";
 
 let username = document.getElementById("unid");
 let helptextname = document.getElementById('helptextname');
-console.log('main')
-    // username.onblur = function() {
-    //     console.log('red')
-    //     if (!validateName(username)) {
-    //         console.log('red')
-    //         username.style.borderColor = "red";
-    //         helptextname.style.color = "red";
-    //         helptextname.innerHTML = "Минимум 2 символа";
-    //     } else {
-    //         username.style.borderColor = "black";
-    //         helptextname.innerHTML = "";
-    //     }
-
-// }
+blurName(username, helptextname)
 
 let userLogin = document.getElementById('userlogin');
 let helptextlogin = document.getElementById('helptextlogin')
-
-userLogin.onblur = function() {
-
-    if (userLogin.value.length < 5) {
-        userLogin.style.borderColor = "red";
-    } else {
-        userLogin.style.borderColor = "black";
-    }
-
-}
-
-// let valid = new Validate(username, helptextname, userLogin, helptextlogin);
+blurLogin(userLogin, helptextlogin)
 
 let useremail = document.getElementById("usermailid");
-
-useremail.onblur = function() {
-    console.log('email')
-    if (validateEmail(useremail.value) == false) {
-        useremail.style.borderColor = "red";
-    } else {
-        useremail.style.borderColor = "black";
-    }
-}
+let helptextemail = document.getElementById('helptextemail')
+blurEmail(useremail, helptextemail)
 
 let userpass = document.getElementById("pass1id");
-
-userpass.onblur = function() {
-    if (validatePassword(userpass.value) == false) {
-        userpass.style.borderColor = "red";
-        let helptext = document.getElementById("helptextid");
-        helptext.style.color = "red";
-        helptext.innerHTML = "Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ";
-    } else {
-        userpass.style.borderColor = "black";
-        let helptext = document.getElementById("helptextid");
-        helptext.innerHTML = "";
-
-    }
-}
+let helptextpassword = document.getElementById('helptextpassword')
+blurPassword(userpass, helptextpassword)
 
 let userpass2 = document.getElementById("pass2id");
-
-userpass2.onblur = function() {
-    if (userpass.value != userpass2.value) {
-        userpass2.style.borderColor = "red";
-    } else {
-        userpass2.style.borderColor = "black";
-    }
-}
+let helptextsecondpassword = document.getElementById('helptextsecondpassword')
+blurSecondPassword(userpass2, userpass, helptextsecondpassword)
 
 let form = document.getElementById("formid");
 
@@ -80,8 +43,7 @@ form.onsubmit = async function(event) {
         login: userLogin.value,
         password: userpass2.value
     };
-
-    if (validatePassword(userpass.value) == true && userpass.value == userpass2.value) {
+    if (validatePassword(userpass) && validateName(username) && validateLogin(userLogin) && validateEmail(useremail) && validateSecondPassword(userpass, userpass2)) {
         try {
             let response = await fetch(SERVER_PATH + 'regist.php', {
                 method: 'POST',
@@ -99,14 +61,3 @@ form.onsubmit = async function(event) {
 
 
 };
-
-function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-
-function validatePassword(password) {
-    const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
-    return re.test(password);
-}

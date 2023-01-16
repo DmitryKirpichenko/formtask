@@ -25,12 +25,15 @@
         </div>
         <div>
             <input id="usermailid" required placeholder="Введите E-mail" name="useremail" type="email">
+            <p id="helptextemail"></p>
         </div>
         <div>
             <input id="pass1id" required placeholder="Введите пароль" name="userpass" type="password">
+            <p id="helptextpassword"></p>
         </div>
         <div>
             <input id="pass2id" required placeholder="Повторите пароль" name="userpass2" type="password">
+            <p id="helptextsecondpassword"></p>
         </div>
         <div>
             Уже есть аккаунт?

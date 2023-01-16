@@ -17,9 +17,11 @@
         </div>
         <div>
             <input id="userlogin" required placeholder="Введите логин" name="login" type="text" minlength="2">
+            <p id="helptextlogin"></p>
         </div>
         <div>
             <input id="pass" required placeholder="Введите пароль" name="userpass" type="password">
+            <p id="helptextpassword"></p>
         </div>
         <div>
             Нет аккаунта?
