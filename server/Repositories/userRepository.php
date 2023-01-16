@@ -1,9 +1,10 @@
 <?php
 
 require_once '../models/user.php';
+require_once 'IRepository.php';
 
 // класс репозиторий для пользователя
-class UserRepository {
+class UserRepository implements IRepository {
     private $path = '/../data/users.json';
 
     function Read(){
