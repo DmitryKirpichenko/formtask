@@ -52,6 +52,8 @@ form.onsubmit = async function(event) {
                 body: JSON.stringify(userdata)
             });
 
+            console.log(await response.text())
+
             const data = await response.json()
             location.reload();
         } catch {

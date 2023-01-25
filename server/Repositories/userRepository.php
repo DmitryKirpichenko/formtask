@@ -2,6 +2,7 @@
 
 require_once '../models/user.php';
 require_once 'IRepository.php';
+require_once '../php/tools/createRes.php';
 
 // класс репозиторий для пользователя
 class UserRepository implements IRepository {
@@ -40,12 +41,12 @@ class UserRepository implements IRepository {
 
         foreach ($users as $item) {
             if ($user->getEmail() == $item->getEmail() || $user->getLogin() == $item->getLogin()) {
-                return json_encode(array('message' => 'Такой логин или почта уже существует'));
+                return createRes(false, 'Такой логин или почта уже существует');
             }
         }
         $users[] = $user->getFullInfo();
         file_put_contents(__DIR__.$this->path, json_encode($users));
-        return json_encode(array('message' => 'Пользователь создан'));
+        return createRes(false, 'Пользователь создан');
     }
 
     public function Delete(User $user) {

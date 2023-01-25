@@ -5,7 +5,6 @@
     убераем вспомогательный текст*/
 function blurElem(elem, helpElem, text, compFunc) {
     elem.onblur = function() {
-        console.log('red')
         if (!compFunc(elem)) {
             elem.style.borderColor = "red";
             helpElem.style.color = "red";
@@ -20,7 +19,7 @@ function blurElem(elem, helpElem, text, compFunc) {
 
 // Функция для проверки имени (длина больше 2 символов)
 export function validateName(elem) {
-    if (elem.value.length < 2) {
+    if (elem.value.length < 2 || validateSpace(elem)) {
         return false;
     } else {
 
@@ -60,7 +59,7 @@ export function blurEmail(elem, helpElem) {
 
 // Функция для проверки пароля (Должен состоять из 6 символов, 1 заглавный, 1 низкого регистра, 1 цифра и 1 спец символ)
 export function validatePassword(elem) {
-    const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g;
+    const re = /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/g;
 
     return re.test(elem.value)
 }
@@ -68,6 +67,12 @@ export function validatePassword(elem) {
 export function blurPassword(elem, helpElem) {
     blurElem(elem, helpElem, 'Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ', validatePassword)
 
+}
+
+export function validateSpace(elem) {
+    const re = /\s/g
+
+    return re.test(elem.value)
 }
 
 // Функция для проверки второго пароля (пароли толжны совпадать)
