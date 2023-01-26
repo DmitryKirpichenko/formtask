@@ -39,14 +39,8 @@ class UserRepository implements IRepository {
     {
         $users = $this->read();
 
-        foreach ($users as $item) {
-            if ($user->getEmail() == $item->getEmail() || $user->getLogin() == $item->getLogin()) {
-                return createRes(false, 'Такой логин или почта уже существует');
-            }
-        }
         $users[] = $user->getFullInfo();
         file_put_contents(__DIR__.$this->path, json_encode($users));
-        return createRes(false, 'Пользователь создан');
     }
 
     public function Delete(User $user) {

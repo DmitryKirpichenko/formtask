@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['auth']) || !$_SESSION['auth']){
+        header('Location: ../index.php');
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcom</title>
     <link rel="stylesheet" href="../css/styled.css" type="text/css" />
-    <script type="module" src="../js/check.js"></script>
+    <!-- <script type="module" src="../js/check.js"></script> -->
 </head>
 
 <body>
     <span>Hello, </span>
     <?php
-    session_start();
     if ($_SESSION['name']) {
         echo $_SESSION['name'];
     }

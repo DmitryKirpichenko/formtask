@@ -7,6 +7,6 @@ logOutButton.onclick = async function() {
     const data = await res.json();
     console.log(data)
     if (data.status == true) {
-        location.replace('../index.php')
+        location.reload()
     }
 }

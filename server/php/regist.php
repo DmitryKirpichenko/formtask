@@ -21,6 +21,12 @@ session_start();
 // вытаскиваем данные из запроса
 $body = json_decode(file_get_contents('php://input'));
 if (isset($body->name) && isset($body->login) && isset($body->email) && isset($body->password)) {
+    $users = $userRepository->Read();
+    foreach ($users as $item) {
+        if ($body->email == $item->getEmail() || $body->login == $item->getLogin()) {
+            die(createRes(false, 'Такой логин или почта уже существует'));
+        }
+    }
     // создаем нового пользователя с такими данными
     $new_user = new User($body->name, $body->login, (new Hash)->createPassword($body->password), $body->email);
     // сохраняем нового пользователя

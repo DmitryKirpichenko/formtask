@@ -52,11 +52,11 @@ form.onsubmit = async function(event) {
                 body: JSON.stringify(userdata)
             });
 
-            console.log(await response.text())
-
             const data = await response.json()
-            location.reload();
-        } catch {
+            if (data.status)
+                location.reload();
+            else alert(data.message)
+        } catch (e) {
             alert('Сервер не отвечает, попробуйте позже.');
         }
     } else {
