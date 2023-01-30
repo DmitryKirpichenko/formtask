@@ -1,4 +1,4 @@
-import { SERVER_PATH } from "../constants/constants.js";
+import { SERVER_PATH_FROM_FOLDER } from "../constants/constants.js";
 
 import {
     validateLogin,
@@ -27,7 +27,7 @@ form.onsubmit = async function(event) {
     // Если есть ошибки, то данные не отправляем
     if (validatePassword(userpass) && validateLogin(userLogin)) {
         try {
-            let response = await fetch(SERVER_PATH + 'login.php', {
+            let response = await fetch(SERVER_PATH_FROM_FOLDER + 'login.php', {
                 method: 'POST',
                 headers: { 'X-Requested-With': 'FetchAjaxRequest' },
                 body: JSON.stringify(userdata)

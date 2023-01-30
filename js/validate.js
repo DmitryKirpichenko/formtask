@@ -19,7 +19,7 @@ function blurElem(elem, helpElem, text, compFunc) {
 
 // Функция для проверки имени (длина больше 2 символов)
 export function validateName(elem) {
-    if (elem.value.length < 2 || validateSpace(elem)) {
+    if (elem.value.length < 2 || validateSpace(elem) || !!elem.value.replace(/[a-zA-Z]/g, '').length) {
         return false;
     } else {
 
@@ -29,12 +29,12 @@ export function validateName(elem) {
 
 
 export function blurName(elem, helpElem) {
-    blurElem(elem, helpElem, 'Минимум 2 символа', validateName)
+    blurElem(elem, helpElem, 'Минимум 2 символа. Без пробелов и спецсимволов', validateName)
 }
 
 // Функция для проверки логина (длина больше 6 символов)
 export function validateLogin(elem) {
-    if (elem.value.length < 6) {
+    if (elem.value.length < 6 || validateSpace(elem)) {
         return false;
     } else {
         return true;
@@ -42,7 +42,7 @@ export function validateLogin(elem) {
 }
 
 export function blurLogin(elem, helpElem) {
-    blurElem(elem, helpElem, 'Минимум 6 символов', validateLogin)
+    blurElem(elem, helpElem, 'Минимум 6 символов, без пробелов', validateLogin)
 }
 
 // Функция для проверки e-mail 
@@ -57,15 +57,19 @@ export function blurEmail(elem, helpElem) {
 
 }
 
-// Функция для проверки пароля (Должен состоять из 6 символов, 1 заглавный, 1 низкого регистра, 1 цифра и 1 спец символ)
+// Функция для проверки пароля (Должен состоять из 6 символов, из букв и цивр)
 export function validatePassword(elem) {
     const re = /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/g;
 
-    return re.test(elem.value)
+    return re.test(elem.value) && !validateSpace(elem) && !validateSymbol(elem)
+}
+export function validateSymbol(elem) {
+    let str = elem.value
+    return !!str.replace(/[0-9a-zA-Z]/g, '').length
 }
 
 export function blurPassword(elem, helpElem) {
-    blurElem(elem, helpElem, 'Пароль должет состоять из 6 символов. Должена пресуствовать одна буква латинского алфавить в верхнем и нижнем регистре, цифра и спец.символ', validatePassword)
+    blurElem(elem, helpElem, 'Пароль должет состоять из 6 символов. Из букв и цифр, без пробелов и спецсимволов.', validatePassword)
 
 }
 
@@ -74,7 +78,6 @@ export function validateSpace(elem) {
 
     return re.test(elem.value)
 }
-
 // Функция для проверки второго пароля (пароли толжны совпадать)
 export function validateSecondPassword(elem, secondElem) {
     if (elem.value !== secondElem.value) {

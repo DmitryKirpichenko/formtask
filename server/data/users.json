@@ -55,8 +55,20 @@
     },
     {
         "name": "sd",
-        "email": "user01@gmail.com",
         "login": "user01",
+        "password": "9523b520b8f391eccb0cca4b1b4bab56",
+        "email": "user01@gmail.com"
+    },
+    {
+        "name": "qwewq",
+        "login": "qweqww",
+        "password": "9523b520b8f391eccb0cca4b1b4bab56",
+        "email": "wqeqwe@gmail.com"
+    },
+    {
+        "name": "wqeqw",
+        "email": "weqweq@gmail.com",
+        "login": "wqeqwe",
         "password": "9523b520b8f391eccb0cca4b1b4bab56"
     }
 ]
